@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json()); // Parse JSON request bodies
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Defining middleware function for fetching blog data
 const fetchBlogDataMiddleware = async (req, res, next) => {
@@ -32,11 +32,45 @@ const fetchBlogDataMiddleware = async (req, res, next) => {
 
 app.get('/', (req, res) => {
     res.send(`
-    <html>
-      <head>
+        <html>
+    <head>
         <title>Blog Analytics and Search Tool</title>
-      </head>
-      <body>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+                margin: 8%;
+                padding: 0;
+            }
+        
+            h1 {
+                color: #333;
+            }
+        
+            p {
+                color: #666;
+                margin-bottom: 20px;
+            }
+        
+            ul {
+                padding: 0;
+            }
+        
+            li {
+                margin-bottom: 10px;
+            }
+        
+            a {
+                text-decoration: none;
+                color: #007BFF;
+            }
+        
+            a:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
         <h1>Welcome to the Blog Analytics and Search Tool</h1>
         <p>Use the following endpoints to get the blog analytics and search results:</p>
         <ul>
@@ -44,8 +78,8 @@ app.get('/', (req, res) => {
             <li><a href="/api/blog-search?query=privacy">/api/blog-search?query=privacy</a></li>
         </ul>
         <p>This Express.js-based tool provides blog analytics and search functionality using data retrieved from a third-party blog API.</p>
-        <p>For more information read the documentation which is writtten in README file of this <a href="https://github.com/anujpatel03/subspace">GitHub Repo</a></p>
-      </body>
+        <p>For more information, read the documentation which is written in the README file of this <a href="https://github.com/anujpatel03/subspace">GitHub Repo</a></p>
+    </body>
     </html>
   `);
 }
