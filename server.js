@@ -30,6 +30,27 @@ const fetchBlogDataMiddleware = async (req, res, next) => {
     }
 };
 
+app.get('/', (req, res) => {
+    res.send(`
+    <html>
+      <head>
+        <title>Blog Analytics and Search Tool</title>
+      </head>
+      <body>
+        <h1>Welcome to the Blog Analytics and Search Tool</h1>
+        <p>Use the following endpoints to get the blog analytics and search results:</p>
+        <ul>
+            <li><a href="/api/blog-stats">/api/blog-stats</a></li>
+            <li><a href="/api/blog-search?query=privacy">/api/blog-search?query=privacy</a></li>
+        </ul>
+        <p>This Express.js-based tool provides blog analytics and search functionality using data retrieved from a third-party blog API.</p>
+        <p>For more information read the documentation which is writtten in README file of this <a href="https://github.com/anujpatel03/subspace">GitHub Repo</a></p>
+      </body>
+    </html>
+  `);
+}
+);
+
 // Creating a route for the '/api/blog-stats' endpoint and use the middleware
 app.get('/api/blog-stats', fetchBlogDataMiddleware, async (req, res) => {
     try {
